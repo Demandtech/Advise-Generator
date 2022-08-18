@@ -47,7 +47,7 @@
       height: 100vh;
      }
      .main-wrapper{
-      width: 320px;
+      width: 310px;
       background-color: hsl(217, 19%, 24%);
       text-align: center;
       padding: 40px;
@@ -105,15 +105,15 @@
   </footer>
   <script>
       const btn = document.getElementById("btn");
-      const id = document.getElementById("id");
+      const ids = document.getElementById("id");
       const getAdvise = document.getElementById("advise");
       // Advise API
       const adviceGen = function () {
           const request = fetch("https://api.adviceslip.com/advice").then((data) =>
         data.json().then((data) => {
-          let { id } = data.slip;
+          let {id} = data.slip;
           let { advice } = data.slip;
-          id.innerHTML = `Advice #${id}`;
+          ids.innerHTML = `Advice #${id}`;
           getAdvise.innerHTML = `"${advice}"`;
     })
   );
