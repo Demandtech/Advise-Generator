@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Advice generator app</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&display=swap');
+    body{
+      font-family: "Manrope";
+      background-color: hsl(218, 23%, 16%);
+    }
+    .attribution { 
+      font-size: 11px;
+      text-align: center; 
+    }
+    .attribution a {
+       color: hsl(228, 45%, 44%); 
+    }
+    #id{
+      color: hsl(150, 100%, 66%);
+      text-transform: uppercase;
+      font-size: 22px;
+
+    }
+     
+    #advise{
+      color: hsl(193, 38%, 86%);
+      font-size: 18px;
+    }
+
+    #btn{
+      background-color: hsl(150, 100%, 66%);
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      padding: 20px;
+    }
+     .main-section{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+     }
+     .main-wrapper{
+      width: 320px;
+      background-color: hsl(217, 19%, 24%);
+      text-align: center;
+      padding: 40px;
+      box-shadow: 2px 2px 5px hsl(217, 19%, 38%);
+      border-radius: 10px;
+      position: relative;
+     }
+
+     .btn-wrapper{
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      margin-top: 20px;
+      
+     }
+
+     #btn{
+      cursor: pointer;
+     }
+
+     #btn:hover{
+      box-shadow: 0 0 15px hsl(150, 100%, 66%);
+     }
+
+     .main-wrapper img{
+      width: 100%;
+      
+     }
+
+    
+  </style>
+</head>
+<body>
+  <main>
+      <section class="main-section">
+          <div class="main-wrapper">
+              <h5 id="id">Advice #</h5><!-- Advice ID goes here -->
+              <p id="advise">"It is easy to sit up and take notice, what difficult is getting up and take action."</p>
+              <div class="pattern">
+                   <img src="./images/pattern-divider-desktop.svg" alt="">
+              </div>
+              <div class="btn-wrapper">
+                   <button id="btn"><img src="./images/icon-dice.svg" alt="icon-dice"></button>
+              </div>
+              
+          </div>
+         
+      </section>
+  </main>
+  
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+  <script>
+      const btn = document.getElementById("btn");
+      const id = document.getElementById("id");
+      const getAdvise = document.getElementById("advise");
+      // Advise API
+      const adviceGen = function () {
+          const request = fetch("https://api.adviceslip.com/advice").then((data) =>
+        data.json().then((data) => {
+          let { id } = data.slip;
+          let { advice } = data.slip;
+          id.innerHTML = `Advice #${id}`;
+          getAdvise.innerHTML = `"${advice}"`;
+    })
+  );
+};
+
+adviceGen();
+
+btn.addEventListener("click", adviceGen);
+  </script>
+</body>
+</html>
